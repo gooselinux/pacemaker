@@ -1,0 +1,24 @@
+diff -r db0d97fef024 cib/io.c
+--- a/cib/io.c	Sun Jul 11 07:34:27 2010 +0200
++++ b/cib/io.c	Sun Jul 11 07:36:21 2010 +0200
+@@ -526,7 +526,20 @@ activateCibXml(xmlNode *new_cib, gboolea
+ 	free_xml(saved_cib);
+ 	if(cib_writes_enabled && cib_status == cib_ok && to_disk) {
+ 	    crm_debug("Triggering CIB write for %s op", op);
++#if 0
+ 	    G_main_set_trigger(cib_writer);
++#else
++	    if(cib_writes_enabled) {
++		int rc = write_cib_contents(the_cib);
++		if(rc != LSB_EXIT_OK) {
++		    crm_err("Disk write failed: exitcode=%d", rc);
++		    if(cib_writes_enabled) {
++			crm_err("Disabling disk writes after write failure");
++			cib_writes_enabled = FALSE;
++		    }
++		}
++	    }
++#endif
+ 	}
+ 	
+ 	return cib_ok;    

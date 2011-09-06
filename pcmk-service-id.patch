@@ -1,0 +1,12 @@
+diff -r 3cfeb621edf5 configure.ac
+--- a/configure.ac	Tue Jul 13 10:22:31 2010 +0200
++++ b/configure.ac	Tue Jul 13 15:39:59 2010 +0200
+@@ -1023,7 +1023,7 @@ AC_DEFINE_UNQUOTED(AIS_COROSYNC, $SUPPOR
+ AC_DEFINE_UNQUOTED(SUPPORT_AIS, $SUPPORT_AIS, Compatability alias for SUPPORT_COROSYNC)
+ AM_CONDITIONAL(BUILD_CS_SUPPORT, test $SUPPORT_CS = 1)
+ 
+-PCMK_SERVICE_ID=9
++PCMK_SERVICE_ID=10
+ if test $SUPPORT_CMAN != no; then
+     AC_MSG_CHECKING(for cman)
+     $PKGCONFIG libcman --exists
